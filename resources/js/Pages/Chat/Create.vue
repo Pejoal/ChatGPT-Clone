@@ -21,16 +21,13 @@ const form = useForm({
 });
 
 const submit = () => {
+  // form.post(route("chat.store"));
   axios
     .post(route("chat.store"), {
       message: form.message,
     })
     .then((response) => {
-      //Save the response in the botAnswers array to display on the chat view
       props.botAnswers.push(response.data);
-      // props.botAnswers.push(...response.data);
-      // props.botAnswers.msgs.push(response.data.msg);
-      // props.botAnswers.answers.push(response.data.answer);
       form.reset('message');
       input.value.focus();
     });
